@@ -1,9 +1,9 @@
-import { connectDB } from "@/util/database";
+import { connectDB } from "/util/database.js";
 
 export default async function Home() {
-  // const client = await connectDB;
-  let db = (await connectDB).db("forum"); // 축약
+  let client = await connectDB;
+  const db = client.db("forum");
   let result = await db.collection("post").find().toArray();
-  console.log(result);
+
   return <main>{result[0].title}</main>;
 }
