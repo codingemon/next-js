@@ -5,7 +5,7 @@ export default function Write() {
       <form action="/api/post/new" method="POST">
         <input name="title" placeholder="글제목" />
         <input name="content" placeholder="글내용" />
-        <button type="sumbit">버튼</button>
+        <button type="sumbit">작성완료</button>
       </form>
     </div>
   );
