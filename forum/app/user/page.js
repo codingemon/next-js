@@ -9,7 +9,7 @@ export default function User() {
           type="password"
           placeholder="비밀번호를 입력하세요"
         />
-        <button type="sumbit">작성하기</button>
+        <button type="sumbit">작성</button>
       </form>
     </div>
   );
