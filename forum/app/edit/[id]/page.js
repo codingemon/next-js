@@ -8,6 +8,7 @@ export default async function Edit(props) {
     .findOne({ _id: new ObjectId(props.params.id) });
 
   // db에 하나의 글 수정하고 싶을때
+  // 현재 작동으 제대로 안됨
   await db
     .collection("post")
     .updateOne({}, { $set: { title: "냠냠", content: "맛있어" } });
