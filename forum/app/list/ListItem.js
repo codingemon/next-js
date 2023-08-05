@@ -11,7 +11,7 @@ export default function ListItem() {
         <Link prefetch={false} href={"/detail/" + result[i]._id}>
           <div className="list-item">
             <h4>{result[i].title}</h4>
-            <p>1월 1일</p>
+            <p>11월 23일</p>
             <Link href={"/edit/" + result[i]._id}>✏️수정</Link>
           </div>
         </Link>
