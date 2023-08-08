@@ -21,14 +21,14 @@ export default function ListItem({ result }) {
                   if (r.status == 200) {
                     return r.json();
                   } else {
-                    //서버가 에러코드전송시 실행할 코드
+                    // 서버가 에러코드전송시 실행할 코드
                   }
                 })
                 .then((result) => {
-                  //성공시 실행할 코드
+                  // 성공시 실행할 코드
                 })
                 .catch((error) => {
-                  //인터넷문제로 실패시 실행할 코드
+                  // 인터넷문제로 실패시 실행할 코드
                   console.log(error);
                 });
             }}
