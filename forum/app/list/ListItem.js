@@ -12,25 +12,20 @@ export default function ListItem({ result }) {
           </Link>
           <Link href={"/edit/" + result[i]._id}>수정</Link>
           <span
-            onClick={() => {
+            onClick={(e) => {
               fetch("/api/post/delete", {
                 method: "DELETE",
                 body: result[i]._id,
               })
-                .then((r) => {
-                  if (r.status == 200) {
-                    return r.json();
-                  } else {
-                    // 서버가 에러코드전송시 실행할 코드
-                  }
-                })
-                .then((result) => {
-                  // 성공시 실행할 코드
-                })
-                .catch((error) => {
-                  // 인터넷문제로 실패시 실행할 코드
-                  console.log(error);
+                .then((r) => r.json())
+                .then(() => {
+                  e.target.parentElement.style.opacity = 0;
+                  setTimeout(() => {
+                    e.target.parentElement.style.display = "none";
+                  }, 1000);
                 });
+              // query string
+              // fetch("/api/abc/어쩌고");
             }}
           >
             / 삭제
