@@ -1,16 +1,18 @@
 import { connectDB } from "@/util/database";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
-export default async function handler(요청, 응답) {
-  if (요청.method == "POST") {
-    console.log(요청.body);
-    if (요청.body.title == "") {
-      return 응답.status(500).json("너 제목 왜 안씀?");
-    } else if (요청.body.content == "") {
-      return 응답.status(500).json("넌 글내용 왜 안씀???");
-    }
+export default async function handler(req, res) {
+  let session = await getServerSession(req, res, authOptions);
+  console.log(session.user.email);
+  if (session) {
+    req.body.author = session.user.email;
+  }
+  console.log(req.body);
+  if (req.method == "POST") {
+    console.log(req.body);
     const db = (await connectDB).db("forum");
-    let result = await db.collection("post").insertOne(요청.body);
-
-    return 응답.status(200).redirect("/list");
+    let result = await db.collection("post").insertOne(req.body);
+    res.status(200).redirect("/list");
   }
 }
