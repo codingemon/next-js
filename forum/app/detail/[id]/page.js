@@ -7,6 +7,11 @@ export default async function Detail(props) {
   let result = await db
     .collection("post")
     .findOne({ _id: new ObjectId(props.params.id) });
+
+  if (result === null) {
+    return notFound();
+  }
+
   return (
     <div>
       <h4>상세페이지</h4>
