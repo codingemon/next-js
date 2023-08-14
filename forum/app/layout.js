@@ -5,6 +5,7 @@ import LoginBtn from "./LoginBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LoginOutBtn from "./LoginOutBtn";
+import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,9 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions);
+
+  let res = cookies().get("name");
+  console.log(res);
   console.log(session);
   return (
     <html lang="en">
