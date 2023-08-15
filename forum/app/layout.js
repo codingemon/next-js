@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LoginOutBtn from "./LoginOutBtn";
 import { cookies } from "next/headers";
+import DarkMod from "./DarkMod";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,12 +18,14 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions);
 
-  let res = cookies().get("name");
-  console.log(res);
+  let res = cookies().get("mode");
+  console.log(res.value);
   console.log(session);
   return (
     <html lang="en">
-      <body>
+      <body
+        className={res != undefined && res.value == "dark" ? "dark-mode" : ""}
+      >
         <div className="navbar">
           <Link href="/" className="logo">
             EmonForum
@@ -38,6 +41,7 @@ export default async function RootLayout({ children }) {
               <LoginBtn />
             )
           }
+          <DarkMod />
         </div>
         {children}
       </body>
